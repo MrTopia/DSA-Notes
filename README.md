@@ -651,8 +651,201 @@ Ans - **Binary Search Process:**
 - **Worst and Average Case:** O(log n) (as the search space is halved with each step).
 
 ### 35. How does bubble sort work? Provide its time complexity.
+Ans- Bubble sort is a simple comparison-based sorting algorithm. It works by repeatedly stepping through the list to be sorted, comparing adjacent elements and swapping them if they are in the wrong order. This process is repeated for each element in the list until no swaps are needed, indicating that the list is sorted.
+
+Here's how it works step-by-step:
+
+1. **Start at the beginning of the list**: Compare the first two adjacent elements.
+   
+2. **Swap if necessary**: If the first element is greater than the second, swap them.
+
+3. **Move to the next pair**: Compare the second and third elements, swap if necessary.
+
+4. **Repeat for the entire list**: Continue comparing adjacent pairs and swapping until you reach the end of the list. At this point, the largest element is guaranteed to be in its correct position (the "bubble" rises to the top).
+
+5. **Repeat the process for the remaining elements**: Start again from the beginning, but exclude the last sorted element (as it's already in its final place). Continue this process for the rest of the list.
+
+6. **End when no swaps are needed**: Once you go through the entire list without making any swaps, the list is sorted.
+
+### Example:
+
+Consider sorting the list `[5, 1, 4, 2, 8]` using bubble sort:
+
+- First pass:
+   - Compare 5 and 1 → swap → `[1, 5, 4, 2, 8]`
+   - Compare 5 and 4 → swap → `[1, 4, 5, 2, 8]`
+   - Compare 5 and 2 → swap → `[1, 4, 2, 5, 8]`
+   - Compare 5 and 8 → no swap
+   - Largest element 8 is now in place.
+
+- Second pass:
+   - Compare 1 and 4 → no swap
+   - Compare 4 and 2 → swap → `[1, 2, 4, 5, 8]`
+   - Compare 4 and 5 → no swap
+   - No need to check the last element (8) as it's already sorted.
+
+- Third pass:
+   - Compare 1 and 2 → no swap
+   - Compare 2 and 4 → no swap
+   - The list is already sorted.
+
+Bubble sort has a time complexity of **O(n²)** in the worst and average cases, making it inefficient for large datasets.
+
 ### 36. Describe selection sort and its time complexity.
+Ans- **Selection sort** is a simple comparison-based sorting algorithm that works by repeatedly finding the minimum (or maximum) element from the unsorted portion of the list and moving it to the beginning (or end) of the sorted portion. It sorts the list in-place and is relatively easy to implement but not efficient for large datasets.
+
+### How Selection Sort Works:
+
+1. **Start at the beginning**: Assume the first element is the minimum.
+
+2. **Find the minimum element**: Scan the rest of the list to find the smallest element.
+
+3. **Swap with the first unsorted element**: Once the minimum element is found, swap it with the first element of the unsorted portion of the list.
+
+4. **Move to the next element**: Consider the next element as the starting point and repeat the process for the rest of the list, treating the first part as sorted and the rest as unsorted.
+
+5. **Repeat until sorted**: Continue this process until the entire list is sorted.
+
+### Example:
+
+Consider sorting the list `[29, 10, 14, 37, 13]` using selection sort:
+
+- First pass:
+   - Find the minimum from `[29, 10, 14, 37, 13]` → `10`
+   - Swap `10` with `29` → `[10, 29, 14, 37, 13]`
+   
+- Second pass:
+   - Find the minimum from `[29, 14, 37, 13]` → `13`
+   - Swap `13` with `29` → `[10, 13, 14, 37, 29]`
+
+- Third pass:
+   - Find the minimum from `[14, 37, 29]` → `14`
+   - No swap needed → `[10, 13, 14, 37, 29]`
+
+- Fourth pass:
+   - Find the minimum from `[37, 29]` → `29`
+   - Swap `29` with `37` → `[10, 13, 14, 29, 37]`
+
+- Now the list is sorted.
+
+### Time Complexity:
+
+- **Best case, Average case, and Worst case**: In all cases, selection sort performs **O(n²)** comparisons because it always needs to scan the unsorted part of the list to find the minimum element. 
+  - The algorithm performs \( \frac{n(n - 1)}{2} \) comparisons (which simplifies to O(n²)).
+  - Since the number of swaps is at most \(n\), it performs \(O(n)\) swaps, but the overall time complexity is dominated by the comparisons.
+
+Thus, selection sort is inefficient for large lists and is rarely used in practice when faster algorithms like quicksort or mergesort are available. However, it has the advantage of being in-place and having a small number of swaps compared to other algorithms.
+
 ### 37. Explain insertion sort and its time complexity.
+Ans-  **Insertion sort** is a comparison-based, in-place sorting algorithm that builds the final sorted array one element at a time. It is similar to sorting playing cards in your hands: you pick one card at a time and place it in the correct position among the already sorted cards.
+
+### How Insertion Sort Works:
+
+1. **Start with the second element**: Consider the first element as sorted by default.
+
+2. **Compare with the sorted portion**: Take the current element (starting from the second) and compare it with elements in the sorted portion of the list (to the left).
+
+3. **Shift elements if needed**: If the current element is smaller than any element in the sorted portion, shift the larger elements one position to the right to make space.
+
+4. **Insert the current element**: Place the current element in its correct position in the sorted portion.
+
+5. **Repeat for all elements**: Move to the next element and repeat the process until the entire list is sorted.
+
+### Example:
+
+Consider sorting the list `[5, 2, 9, 1, 5, 6]` using insertion sort:
+
+- **First pass**:
+  - Start with the second element (`2`), compare it with `5`:
+  - `2` is smaller, so shift `5` to the right and insert `2` at the beginning → `[2, 5, 9, 1, 5, 6]`.
+
+- **Second pass**:
+  - Consider `9` (already in the correct position compared to `5`), no change → `[2, 5, 9, 1, 5, 6]`.
+
+- **Third pass**:
+  - Consider `1`, compare with `9`, `5`, and `2`:
+  - Shift `9`, `5`, and `2` to the right, then insert `1` at the beginning → `[1, 2, 5, 9, 5, 6]`.
+
+- **Fourth pass**:
+  - Consider `5`, compare with `9`:
+  - Shift `9` to the right, then insert `5` → `[1, 2, 5, 5, 9, 6]`.
+
+- **Fifth pass**:
+  - Consider `6`, compare with `9`:
+  - Shift `9` to the right, then insert `6` → `[1, 2, 5, 5, 6, 9]`.
+
+The list is now sorted.
+
+### Time Complexity:
+
+- **Best case (O(n))**: This occurs when the list is already sorted. In this case, each element is compared only once with the element before it, resulting in a linear time complexity.
+  
+- **Average and Worst case (O(n²))**: In the average or worst case, when the list is in reverse order, each new element may need to be compared with every element already sorted. This results in quadratic time complexity due to the repeated comparisons and shifts.
+
+### Space Complexity:
+- **O(1)**: Insertion sort is an in-place sorting algorithm, meaning it requires a constant amount of additional memory.
+
+### Key Characteristics:
+- Efficient for small datasets or nearly sorted data.
+- Stable (it maintains the relative order of equal elements).
+- Adaptive: Its best case is linear when the list is already sorted or nearly sorted.
+  
+Insertion sort is often used in hybrid sorting algorithms like **Timsort**, which combines insertion sort for small sublists with more efficient algorithms like merge sort for larger lists.
+
 ### 38. How does merge sort work, and what is its time complexity?
+Ans - **Merge sort** is a divide-and-conquer sorting algorithm that works by recursively splitting the list into smaller sublists, sorting those sublists, and then merging them back together in sorted order. It is efficient for large datasets and has a stable time complexity.
+
+### How Merge Sort Works:
+
+1. **Divide**: Split the list into two roughly equal halves. Keep dividing each half recursively until each sublist contains only one element (which is trivially sorted).
+   
+2. **Conquer (Sort and Merge)**: Merge the sorted sublists back together. During the merging process, compare elements from the two sublists and build a new sorted list by choosing the smaller element each time.
+
+3. **Repeat**: Continue merging until all sublists are merged into one sorted list.
+
+### Example:
+
+Consider sorting the list `[38, 27, 43, 3, 9, 82, 10]` using merge sort:
+
+1. **Divide the list**:
+   - `[38, 27, 43, 3, 9, 82, 10]` → split into `[38, 27, 43]` and `[3, 9, 82, 10]`
+   - `[38, 27, 43]` → split into `[38]` and `[27, 43]`
+   - `[27, 43]` → split into `[27]` and `[43]`
+   - `[3, 9, 82, 10]` → split into `[3, 9]` and `[82, 10]`
+   - `[82, 10]` → split into `[82]` and `[10]`
+
+2. **Conquer (Sort and Merge)**:
+   - Merge `[27]` and `[43]` → `[27, 43]`
+   - Merge `[38]` and `[27, 43]` → `[27, 38, 43]`
+   - Merge `[3]` and `[9]` → `[3, 9]`
+   - Merge `[82]` and `[10]` → `[10, 82]`
+   - Merge `[3, 9]` and `[10, 82]` → `[3, 9, 10, 82]`
+
+3. **Final Merge**:
+   - Merge `[27, 38, 43]` and `[3, 9, 10, 82]` → `[3, 9, 10, 27, 38, 43, 82]`
+
+Now the list is sorted.
+
+### Time Complexity:
+
+1. **Divide step**: The list is divided into two halves at each level of recursion. Since each split reduces the size of the problem by half, this creates a binary tree structure with a height of \( \log n \) (where \( n \) is the size of the list).
+
+2. **Merge step**: At each level, merging two sublists requires a linear number of comparisons (i.e., \( O(n) \)) because each element from the two sublists is compared and placed into the result list.
+
+- **Overall time complexity**: The total number of operations is \( O(n \log n) \). This is because there are \( \log n \) levels of recursion, and at each level, merging takes \( O(n) \) time.
+
+Thus, merge sort's time complexity is:
+- **Best case**: \( O(n \log n) \)
+- **Average case**: \( O(n \log n) \)
+- **Worst case**: \( O(n \log n) \)
+
+### Space Complexity:
+- Merge sort requires additional space to store the sublists and the merged lists, making its space complexity \( O(n) \). This is because it requires temporary arrays for merging.
+
+### Characteristics:
+- **Stable**: Merge sort maintains the relative order of equal elements.
+- **Efficient**: Merge sort is more efficient than algorithms like bubble sort or selection sort for large datasets, thanks to its \( O(n \log n) \) time complexity.
+- **Divide and Conquer**: Its divide-and-conquer nature makes it suitable for parallel processing.
+
 ### 39. Describe quick sort and its time complexity.
 ### 40. Explain heap sort and its time complexity. Compare it with other sorting techniques.

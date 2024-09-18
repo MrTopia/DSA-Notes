@@ -255,14 +255,26 @@ void deleteNode(Node*& head, Node* nodeToDelete) {
 ### 11. Describe how to implement a single stack using an array.
 ### 12. Explain how to implement multiple stacks using a single array.
 ### 13. What are prefix, infix, and postfix expressions? Provide examples.
-Ans- To convert an infix expression to a postfix expression, use the following steps:
+Ans- **Prefix, infix, and postfix expressions** are different ways of writing mathematical expressions. Each notation has its own method of representing operations and operands.
 
-1. **Initialize** an empty stack and an output list.
-2. **Scan** the infix expression from left to right.
-3. **Operands** are directly added to the output.
-4. **Operators** are pushed onto the stack, but pop and append to output if the top of the stack has an operator of higher or equal precedence.
-5. **Parentheses**: Push `(` to the stack, and when encountering `)`, pop until `(` is found.
-6. After scanning, **pop all remaining operators** from the stack to the output.
+### 1. **Infix Expression**
+- **Definition**: Operators are placed between operands.
+- **Example**: `A + B`
+
+### 2. **Prefix Expression (Polish Notation)**
+- **Definition**: Operators precede their operands.
+- **Example**: `+ A B`
+
+### 3. **Postfix Expression (Reverse Polish Notation)**
+- **Definition**: Operators follow their operands.
+- **Example**: `A B +`
+
+### Conversion Example:
+For the infix expression `A + B * C`:
+- **Prefix**: `+ A * B C`
+- **Postfix**: `A B C * +`
+
+Prefix and postfix notations do not require parentheses to indicate order of operations, making them useful in certain computational algorithms.
 
 ### 14. How can you convert an infix expression to a postfix expression?
 Ans- To convert an infix expression (where operators are between operands) to a postfix expression (where operators come after operands), follow these steps:

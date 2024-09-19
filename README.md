@@ -916,3 +916,137 @@ function binarySearch(arr, target):
 ### Key Differences:
 - **Linear Search**: Can be used on unsorted data and takes O(n) time.
 - **Binary Search**: Requires sorted data and is more efficient, taking O(log n) time.
+
+### 42. State the Sort Algorithms with example.
+
+Ans - Sure! Here are the algorithms and corresponding C code implementations for Bubble Sort, Selection Sort, and Insertion Sort:
+
+### Bubble Sort
+
+**Algorithm**:
+1. Start at the beginning of the array.
+2. Compare adjacent elements and swap them if they are in the wrong order.
+3. Continue the process for each pair of adjacent elements until the end of the array.
+4. Repeat the process for the remaining elements, reducing the number of elements to be compared by one each time, until no more swaps are needed.
+
+**C Code**:
+```c
+#include <stdio.h>
+
+void bubbleSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j + 1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    bubbleSort(arr, size);
+
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+
+### Selection Sort
+
+**Algorithm**:
+1. Start at the beginning of the array.
+2. Find the minimum element in the unsorted part of the array.
+3. Swap it with the first element of the unsorted part.
+4. Move the boundary of the sorted part one element to the right.
+5. Repeat the process until the entire array is sorted.
+
+**C Code**:
+```c
+#include <stdio.h>
+
+void selectionSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < size; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        // Swap arr[i] and arr[minIndex]
+        int temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    selectionSort(arr, size);
+
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+
+### Insertion Sort
+
+**Algorithm**:
+1. Start from the second element (the first element is considered sorted).
+2. Compare the current element with the elements in the sorted part of the array.
+3. Insert the current element into its correct position in the sorted part.
+4. Repeat the process for each element until the entire array is sorted.
+
+**C Code**:
+```c
+#include <stdio.h>
+
+void insertionSort(int arr[], int size) {
+    for (int i = 1; i < size; i++) {
+        int key = arr[i];
+        int j = i - 1;
+
+        // Move elements of arr[0..i-1], that are greater than key,
+        // to one position ahead of their current position
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    int arr[] = {64, 25, 12, 22, 11};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    insertionSort(arr, size);
+
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+```
+
+These algorithms work well for small to medium-sized arrays. For larger datasets, more advanced sorting algorithms like Merge Sort or Quick Sort are usually preferred due to their better performance characteristics.

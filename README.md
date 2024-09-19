@@ -849,3 +849,70 @@ Thus, merge sort's time complexity is:
 
 ### 39. Describe quick sort and its time complexity.
 ### 40. Explain heap sort and its time complexity. Compare it with other sorting techniques.
+
+### 41. State the Algorithm for Linear and Binary Search.
+Ans- Here are the algorithms for **linear search** and **binary search**:
+
+### 1. Linear Search
+
+**Linear search** is a straightforward algorithm that checks each element in a list one by one until the target value is found or the list is exhausted.
+
+#### Algorithm:
+1. Start from the first element of the array.
+2. Compare the current element with the target value.
+3. If the current element is equal to the target, return the index.
+4. If the current element is not the target, move to the next element.
+5. If the end of the array is reached and the target is not found, return "not found".
+
+#### Pseudocode:
+```plaintext
+function linearSearch(arr, target):
+    for i = 0 to length(arr) - 1:
+        if arr[i] == target:
+            return i  // Target found, return index
+    return -1  // Target not found
+```
+
+#### Time Complexity:
+- **Best case**: O(1) (when the target is at the first position)
+- **Worst case**: O(n) (when the target is at the last position or not present)
+
+---
+
+### 2. Binary Search
+
+**Binary search** works on a sorted array by repeatedly dividing the search interval in half. If the target value is less than the middle element, the search continues in the left half; otherwise, it continues in the right half.
+
+#### Algorithm:
+1. Find the middle element of the sorted array.
+2. If the middle element is equal to the target, return the index.
+3. If the target is less than the middle element, search the left half of the array.
+4. If the target is greater than the middle element, search the right half of the array.
+5. Repeat the process until the target is found or the sub-array becomes empty.
+
+#### Pseudocode:
+```plaintext
+function binarySearch(arr, target):
+    low = 0
+    high = length(arr) - 1
+    
+    while low <= high:
+        mid = low + (high - low) // 2  // Find the middle index
+        
+        if arr[mid] == target:
+            return mid  // Target found
+        else if arr[mid] < target:
+            low = mid + 1  // Search the right half
+        else:
+            high = mid - 1  // Search the left half
+            
+    return -1  // Target not found
+```
+
+#### Time Complexity:
+- **Best case**: O(1) (if the target is the middle element in the first comparison)
+- **Worst case**: O(log n) (since the search space is halved in each step)
+
+### Key Differences:
+- **Linear Search**: Can be used on unsorted data and takes O(n) time.
+- **Binary Search**: Requires sorted data and is more efficient, taking O(log n) time.
